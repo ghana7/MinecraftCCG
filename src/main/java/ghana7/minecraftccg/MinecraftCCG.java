@@ -5,26 +5,36 @@ import ghana7.minecraftccg.cards.BlankCard;
 import ghana7.minecraftccg.cards.CowCard;
 import ghana7.minecraftccg.cards.FireCard;
 import ghana7.minecraftccg.cards.VillagerCard;
+import ghana7.minecraftccg.deck.Deck;
+import ghana7.minecraftccg.deck.DeckContainer;
+import ghana7.minecraftccg.deck.DeckScreen;
 import ghana7.minecraftccg.game.CardTable;
 import ghana7.minecraftccg.game.CardTableTileEntity;
 import ghana7.minecraftccg.game.CardTableTileEntityRenderer;
 import ghana7.minecraftccg.game.GamingStick;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.impl.ContextAnchor;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftCCG.MODID)
@@ -54,6 +64,9 @@ public class MinecraftCCG
             new GamingStick()
     );
 
+    public static final RegistryObject<Item> DECK = ITEMS.register("deck", () ->
+            new Deck()
+    );
     //Cards
     public static final RegistryObject<Item> BLANK_CARD = MinecraftCCG.ITEMS.register("blank_card", () ->
             new BlankCard()
@@ -81,10 +94,18 @@ public class MinecraftCCG
             "card_table", () -> TileEntityType.Builder.create(CardTableTileEntity::new, CARD_TABLE_BLOCK.get()).build(null)
     );
 
+    private static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
+    public static final RegistryObject<ContainerType<DeckContainer>> DECK_CONTAINER = CONTAINERS.register(
+            "deck", () -> IForgeContainerType.create(((windowId, inv, data) -> {
+                return new DeckContainer(windowId, inv, inv.player);
+            })
+    ));
+
     public MinecraftCCG() {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
@@ -99,5 +120,7 @@ public class MinecraftCCG
         ClientRegistry.bindTileEntityRenderer(CARD_TABLE_TE.get(), CardTableTileEntityRenderer::new);
 
         RenderTypeLookup.setRenderLayer(CARD_TABLE_BLOCK.get(), RenderType.getTranslucent());
+
+        ScreenManager.registerFactory(MinecraftCCG.DECK_CONTAINER.get(), DeckScreen::new);
     }
 }
