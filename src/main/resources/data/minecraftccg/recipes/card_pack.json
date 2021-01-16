@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "ppp",
+    "plp",
+    "ppp"
+  ],
+  "key":
+  {
+    "p":
+    {
+      "item": "minecraftccg:blank_card"
+    },
+    "l":
+    {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result":
+  {
+    "item": "minecraftccg:card_pack",
+    "count": 3
+  }
+}

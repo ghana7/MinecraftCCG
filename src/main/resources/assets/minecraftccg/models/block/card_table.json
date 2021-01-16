@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraftccg:block/card_table_top",
+    "north": "minecraftccg:block/card_table_side",
+    "south": "minecraftccg:block/card_table_side",
+    "east": "minecraftccg:block/card_table_side",
+    "west": "minecraftccg:block/card_table_side",
+    "up": "minecraftccg:block/card_table_top",
+    "down": "minecraftccg:block/card_table_bottom"
+  }
+}

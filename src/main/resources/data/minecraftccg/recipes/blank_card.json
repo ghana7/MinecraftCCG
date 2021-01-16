@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "p",
+    "p",
+    "p"
+  ],
+  "key":
+  {
+    "p":
+    {
+      "item": "minecraft:paper"
+    }
+  },
+  "result":
+  {
+    "item": "minecraftccg:blank_card",
+    "count": 3
+  }
+}
