@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraftccg:block/game_controller",
+    "north": "minecraftccg:block/game_controller",
+    "south": "minecraftccg:block/game_controller",
+    "east": "minecraftccg:block/game_controller",
+    "west": "minecraftccg:block/game_controller",
+    "up": "minecraftccg:block/game_controller",
+    "down": "minecraftccg:block/game_controller"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "minecraftccg:block/game_controller" }
+  }
+}

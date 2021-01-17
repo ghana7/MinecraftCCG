@@ -5,10 +5,7 @@ import ghana7.minecraftccg.cards.*;
 import ghana7.minecraftccg.deck.Deck;
 import ghana7.minecraftccg.deck.DeckContainer;
 import ghana7.minecraftccg.deck.DeckScreen;
-import ghana7.minecraftccg.game.CardTable;
-import ghana7.minecraftccg.game.CardTableTileEntity;
-import ghana7.minecraftccg.game.CardTableTileEntityRenderer;
-import ghana7.minecraftccg.game.GamingStick;
+import ghana7.minecraftccg.game.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -46,12 +43,23 @@ public class MinecraftCCG
             new CardTable()
     );
 
+    public static final RegistryObject<Block> GAME_CONTROLLER_BLOCK = BLOCKS.register("game_controller", () ->
+            new GameController()
+    );
+
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
     //BlockItems
     public static final RegistryObject<Item> CARD_TABLE_BLOCK_ITEM = ITEMS.register("card_table", () ->
             new BlockItem(
                     CARD_TABLE_BLOCK.get(),
+                    new Item.Properties().group(ModItemGroup.TRADING_CARDS)
+            )
+    );
+
+    public static final RegistryObject<Item> GAME_CONTROLLER_BLOCK_ITEM = ITEMS.register("game_controller", () ->
+            new BlockItem(
+                    GAME_CONTROLLER_BLOCK.get(),
                     new Item.Properties().group(ModItemGroup.TRADING_CARDS)
             )
     );
@@ -93,6 +101,18 @@ public class MinecraftCCG
             new SeedsCard()
     );
 
+    public static final RegistryObject<Item> COMPOSTER_CARD = MinecraftCCG.ITEMS.register("composter_card", () ->
+            new ComposterCard()
+    );
+    public static final RegistryObject<Item> HOUSE_CARD = MinecraftCCG.ITEMS.register("house_card", () ->
+            new HouseCard()
+    );
+    public static final RegistryObject<Item> IRON_GOLEM_CARD = MinecraftCCG.ITEMS.register("iron_golem_card", () ->
+            new IronGolemCard()
+    );
+    public static final RegistryObject<Item> IRON_PICKAXE_CARD = MinecraftCCG.ITEMS.register("iron_pickaxe_card", () ->
+            new IronPickaxeCard()
+    );
     public static final RegistryObject<Item> DEBUG_CARD_PACK = MinecraftCCG.ITEMS.register("card_pack", () ->
             new DebugCardPack()
     );
@@ -101,6 +121,10 @@ public class MinecraftCCG
     private static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     public static final RegistryObject<TileEntityType<CardTableTileEntity>> CARD_TABLE_TE = TILE_ENTITY_TYPES.register(
             "card_table", () -> TileEntityType.Builder.create(CardTableTileEntity::new, CARD_TABLE_BLOCK.get()).build(null)
+    );
+
+    public static final RegistryObject<TileEntityType<GameControllerTileEntity>> GAME_CONTROLLER_TE = TILE_ENTITY_TYPES.register(
+            "game_controller", () -> TileEntityType.Builder.create(GameControllerTileEntity::new, GAME_CONTROLLER_BLOCK.get()).build(null)
     );
 
     private static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
