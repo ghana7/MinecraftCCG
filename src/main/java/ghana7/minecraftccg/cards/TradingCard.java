@@ -24,6 +24,9 @@ public abstract class TradingCard extends Item {
         super(new Item.Properties().group(ModItemGroup.TRADING_CARDS));
     }
 
+    public int getMaxCopiesInDeck() {
+        return 6;
+    }
     public void onGameActivate(ItemStack stackIn, PlayerEntity playerIn) {
         MinecraftCCG.LOGGER.debug("card activated");
     }

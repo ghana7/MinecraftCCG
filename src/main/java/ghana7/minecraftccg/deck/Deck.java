@@ -42,7 +42,22 @@ public class Deck extends Item {
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return stack.getItem() instanceof TradingCard;
+                Item stackItem = stack.getItem();
+                if(stackItem instanceof TradingCard) {
+                    int numCopiesInDeck = 0;
+                    int maxCopies = ((TradingCard) stackItem).getMaxCopiesInDeck();
+                    if(maxCopies == -1) {
+                        return true;
+                    }
+                    for(int i = 0; i < this.getSlots(); i++) {
+                        if(this.getStackInSlot(i).getItem() == stackItem) {
+                            numCopiesInDeck++;
+                        }
+                    }
+                    return numCopiesInDeck < maxCopies;
+                } else {
+                    return false;
+                }
             }
 
             @Override
@@ -76,7 +91,7 @@ public class Deck extends Item {
             INamedContainerProvider containerProvider = new INamedContainerProvider() {
                 @Override
                 public ITextComponent getDisplayName() {
-                    return new TranslationTextComponent("screen.recyclingmachinemod.deck");
+                    return new TranslationTextComponent("screen.minecraftccg.deck");
                 }
 
                 @Nullable

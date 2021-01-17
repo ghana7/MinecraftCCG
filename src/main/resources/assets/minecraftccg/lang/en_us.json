@@ -3,9 +3,14 @@
   "item.minecraftccg.cow_card": "Cow Card",
   "item.minecraftccg.villager_card": "Villager Card",
   "item.minecraftccg.fire_card": "Fire Card",
+  "item.minecraftccg.emerald_card": "Emerald Card",
+  "item.minecraftccg.wheat_card": "Wheat Card",
+  "item.minecraftccg.seeds_card": "Seeds Card",
+
   "item.minecraftccg.card_pack": "Card Pack",
   "block.minecraftccg.card_table": "Card Table",
   "item.minecraftccg.gaming_stick": "Gaming Stick",
   "item.minecraft.ccg.deck": "Deck",
-  "itemGroup.trading_cards": "Trading Cards"
+  "itemGroup.trading_cards": "Trading Cards",
+  "screen.minecraftccg.deck": "Edit Deck"
 }

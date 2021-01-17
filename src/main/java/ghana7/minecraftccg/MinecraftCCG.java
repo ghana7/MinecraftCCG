@@ -1,10 +1,7 @@
 package ghana7.minecraftccg;
 
 import ghana7.minecraftccg.cardpacks.DebugCardPack;
-import ghana7.minecraftccg.cards.BlankCard;
-import ghana7.minecraftccg.cards.CowCard;
-import ghana7.minecraftccg.cards.FireCard;
-import ghana7.minecraftccg.cards.VillagerCard;
+import ghana7.minecraftccg.cards.*;
 import ghana7.minecraftccg.deck.Deck;
 import ghana7.minecraftccg.deck.DeckContainer;
 import ghana7.minecraftccg.deck.DeckScreen;
@@ -82,6 +79,18 @@ public class MinecraftCCG
 
     public static final RegistryObject<Item> FIRE_CARD = MinecraftCCG.ITEMS.register("fire_card", () ->
             new FireCard()
+    );
+
+    public static final RegistryObject<Item> EMERALD_CARD = MinecraftCCG.ITEMS.register("emerald_card", () ->
+            new EmeraldCard()
+    );
+
+    public static final RegistryObject<Item> WHEAT_CARD = MinecraftCCG.ITEMS.register("wheat_card", () ->
+            new WheatCard()
+    );
+
+    public static final RegistryObject<Item> SEEDS_CARD = MinecraftCCG.ITEMS.register("seeds_card", () ->
+            new SeedsCard()
     );
 
     public static final RegistryObject<Item> DEBUG_CARD_PACK = MinecraftCCG.ITEMS.register("card_pack", () ->
